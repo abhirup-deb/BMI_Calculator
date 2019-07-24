@@ -7,6 +7,30 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+  Color colour = Color(0xFF111328);
+  Color fclr = Color(0xFF111328);
+  Color mclr = Color(0xFF111328);
+  Color active = Color(0xFF1D1E33);
+  Color inactive = Color(0xFF111328);
+
+  void Gesture(int gdr){
+    if(gdr==1) {
+      fclr=inactive;
+      if (mclr == inactive)
+        mclr = active;
+      else
+        mclr = inactive;
+    }
+    if(gdr==2) {
+      mclr=inactive;
+      if (fclr == inactive)
+        fclr = active;
+      else
+        fclr = inactive;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,12 +43,29 @@ class _InputPageState extends State<InputPage> {
           Row(
               children: <Widget>[
                 Expanded(
-                  child:  ReusableCard(clr: Color(0xFF1D1E33),
-                  cardChild:  IconContent(gender: 'MALE',sign: FontAwesomeIcons.mars,),
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        Gesture(1);
+                      });
+                    },
+                    child: ReusableCard(clr: mclr,
+                    cardChild:  IconContent(gender: 'MALE',sign: FontAwesomeIcons.mars,),
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(clr: Color(0xFF1D1E33),cardChild: IconContent(gender: 'FEMALE',sign: FontAwesomeIcons.venus),),
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        Gesture(2);
+                      });
+                    },
+                      child: ReusableCard(
+                        clr: fclr,
+                        cardChild: IconContent(gender: 'FEMALE',sign: FontAwesomeIcons.venus),
+                      )
+                  ),
                 ),
               ],
             ),
