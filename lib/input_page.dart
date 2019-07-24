@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -18,10 +19,12 @@ class _InputPageState extends State<InputPage> {
           Row(
               children: <Widget>[
                 Expanded(
-                  child:  ReusableCard(clr: Color(0xFF1D1E33),),
+                  child:  ReusableCard(clr: Color(0xFF1D1E33),
+                  cardChild:  IconContent(gender: 'MALE',sign: FontAwesomeIcons.mars,),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(clr: Color(0xFF1D1E33),),
+                  child: ReusableCard(clr: Color(0xFF1D1E33),cardChild: IconContent(gender: 'FEMALE',sign: FontAwesomeIcons.venus),),
                 ),
               ],
             ),
@@ -31,7 +34,8 @@ class _InputPageState extends State<InputPage> {
           Row(
             children: <Widget>[
               Expanded(
-                child: ReusableCard(clr: Color(0xFF1D1E33),),
+                child: ReusableCard(clr: Color(0xFF1D1E33),
+                ),
               ),
               Expanded(
                 child: ReusableCard(clr: Color(0xFF1D1E33),),
@@ -45,13 +49,43 @@ class _InputPageState extends State<InputPage> {
   }
 }
 
+class IconContent extends StatelessWidget {
+ IconContent({@required this.gender,@required this.sign});
+ final String gender;
+ final IconData sign;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Icon(
+           sign,
+          size: 60.0,
+          color: Colors.white,
+        ),
+        SizedBox(
+          height: 6.0,
+        ),
+        Text(gender,
+        style: TextStyle(
+          color: Color(0xFF70FFC0),
+          height: 1.0,
+        )),
+      ],
+    );
+  }
+}
+
 class ReusableCard extends StatelessWidget {
-  ReusableCard({@required this.clr});
-  Color clr;
+  ReusableCard({@required this.clr, this.cardChild});
+  final Color clr;
+  final Widget cardChild;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      child: cardChild,
       height: 140.0,
       margin: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
