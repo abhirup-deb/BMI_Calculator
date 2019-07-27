@@ -14,6 +14,7 @@ class _InputPageState extends State<InputPage> {
   Color active = Color(0xFF1D1E33);
   Color inactive = Color(0xFF111328);
   int height = 160;
+  int weight = 60;
 
   void Gesture(int gdr){
     if(gdr==1) {
@@ -107,6 +108,50 @@ class _InputPageState extends State<InputPage> {
             children: <Widget>[
               Expanded(
                 child: ReusableCard(clr: Color(0xFF1D1E33),
+                  cardChild: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 7.0,
+                      ),
+                      Text('WEIGHT'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(weight.toString(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 38.0),),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Text('kg'),
+                        ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            onPressed: (){
+                              setState((){
+                                weight++;
+                              });
+                            },
+                          ),
+                          SizedBox (
+                            width: 5.0,
+                          ),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            onPressed: (){
+                              setState((){
+                                if(weight!=0)
+                                  weight--;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Expanded(
@@ -166,11 +211,29 @@ class ReusableCard extends StatelessWidget {
     return Container(
       child: cardChild,
       height: 140.0,
+
       margin: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         color: clr,
         borderRadius: BorderRadius.circular(10.0),
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({@required this.icon,@required this.onPressed});
+  final IconData icon;
+  final Function onPressed;
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      onPressed: onPressed,
+      elevation: 6.0,
+      constraints: BoxConstraints.tightFor(height: 46.0, width: 46.0),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
