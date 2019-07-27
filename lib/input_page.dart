@@ -15,6 +15,7 @@ class _InputPageState extends State<InputPage> {
   Color inactive = Color(0xFF111328);
   int height = 160;
   int weight = 60;
+  int age = 18;
 
   void Gesture(int gdr){
     if(gdr==1) {
@@ -113,6 +114,54 @@ class _InputPageState extends State<InputPage> {
                       SizedBox(
                         height: 7.0,
                       ),
+                      Text('AGE'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(age.toString(),style: TextStyle(fontWeight: FontWeight.w900,fontSize: 38.0),),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Text('yrs'),
+                        ],
+                      ),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            onPressed: (){
+                              setState((){
+                                age++;
+                              });
+                            },
+                          ),
+                          SizedBox (
+                            width: 5.0,
+                          ),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            onPressed: (){
+                              setState((){
+                                if(age!=0)
+                                  age--;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ReusableCard(clr: Color(0xFF1D1E33),
+                  cardChild: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 7.0,
+                      ),
                       Text('WEIGHT'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -153,9 +202,6 @@ class _InputPageState extends State<InputPage> {
                     ],
                   ),
                 ),
-              ),
-              Expanded(
-                child: ReusableCard(clr: Color(0xFF1D1E33),),
               ),
             ],
           ),
