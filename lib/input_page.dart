@@ -70,7 +70,25 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           Expanded(
-            child:ReusableCard(clr: Color(0xFF1D1E33),),
+            child:ReusableCard(clr: Color(0xFF1D1E33),
+            cardChild: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('HEIGHT'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: <Widget>[
+                    Text(height.toString(),style: TextStyle(
+                      fontSize: 38.0,
+                      fontWeight: FontWeight.w900,
+                    ),),
+                    Text('cm'),
+                  ],),
+              ],
+            ),
+            ),
           ),
           Row(
             children: <Widget>[
