@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'result_page.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -205,12 +206,17 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           ),
-          Container(
-            color: Color(0xFFEB1555),
-            margin: EdgeInsets.only(top: 1.0),
-            width: double.infinity,
-            height: 60.0,
-            child: Center(child: Text('CALCULATE',style: TextStyle(fontSize: 28.0),),),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Resultpage()),);
+            },
+            child: Container(
+              color: Color(0xFFEB1555),
+              margin: EdgeInsets.only(top: 1.0),
+              width: double.infinity,
+              height: 60.0,
+              child: Center(child: Text('CALCULATE',style: TextStyle(fontSize: 28.0),),),
+            ),
           ),
         ],
       ),
