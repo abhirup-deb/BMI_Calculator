@@ -3,6 +3,11 @@ import 'input_page.dart';
 
 
 class Resultpage extends StatelessWidget {
+  Resultpage({@required this.bmiresult,@required this.resultText,@required this.interpretation});
+
+  final String bmiresult;
+  final String resultText;
+  final String interpretation;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,10 +30,10 @@ class Resultpage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Center(
-                      child:  Text('Normal',style: TextStyle(color: Colors.white,fontSize: 18.0),),
+                      child:  Text(resultText,style: TextStyle(color: Colors.white,fontSize: 18.0),),
                     ),
-                    Center(child: Text('29.6',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w900,fontSize: 85.0),)),
-                    Center(child: Text('Someting important')),
+                    Center(child: Text(bmiresult,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w900,fontSize: 85.0),)),
+                    Center(child: Text(interpretation)),
                   ],
                 )
             ),
