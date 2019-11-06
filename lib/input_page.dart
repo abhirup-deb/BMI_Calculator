@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'result_page.dart';
+import 'calculator_brain.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -208,7 +209,12 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Resultpage()),);
+              CalculatorBrain calc = new CalculatorBrain(height: height,weight: weight);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Resultpage(
+                bmiresult: calc.calculatebmi(),
+                resultText: calc.getResult(),
+                interpretation: calc.getInterpretation(),
+              )),);
             },
             child: Container(
               color: Color(0xFFEB1555),
